@@ -1,27 +1,23 @@
+from io import StringIO
 from multiprocessing import Process
 from pathlib import Path
-from typing import Optional, TextIO, Tuple
+from typing import Optional
 
-from psutil import Popen
-
-from execution.solution_result import SolutionResult
+from subprocess import PIPE, Popen, TimeoutExpired
 
 
 class ExternalCodeRunner:
-    def run(self, filepath: Path, input: bytes) -> Tuple[SolutionResult, str]:
-        input_stream = TextIO(input)
-        output_stream = TextIO()
-
-        external_code_process: Optional[Process] = None
+    def run(self, filepath: Path, test_case_input: str) -> str:
+        external_code_process: Optional[Popen] = None
         if filepath.suffix == '.py':
-            external_code_process = Popen(['python', str(filepath)], stdin=input_stream, stdout=output_stream)
+            external_code_process: Popen = Popen(['python', str(filepath)], stdin=PIPE, stdout=PIPE)
         
         if external_code_process:
-            try:
-                external_code_process.wait(timeout=5)
-                output_stream.seek(0)
-                return output_stream.read()
-            except TimeoutError:
+            try:                
+                stdin = test_case_input.encode('ascii')
+                process_output, stderr = external_code_process.communicate(input=stdin, timeout=5)                            
+                return process_output.decode('ascii')
+            except TimeoutExpired:
                 external_code_process.kill()
                 raise
 

@@ -2,9 +2,8 @@ from dataclasses import dataclass
 from enum import Enum
 
 
-class SolutionResultType(Enum):
-    TimeLimitExceeded = 1
-    IncorrectResult = 2
-    RuntimeException = 3
-    CorrectResult = 4
-    
+class TestCaseResultType(Enum):
+    TimeLimitExceeded = 'Time limit exceeded'
+    IncorrectResult = 'Incorrect result'
+    RuntimeException = 'Runtime exception'
+    CorrectResult = 'Correct result'
