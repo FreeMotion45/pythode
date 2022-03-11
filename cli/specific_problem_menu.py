@@ -11,10 +11,10 @@ class SpecificProblemMenu(CliMenu):
         super().__init__()
         self._solution_runner = user_solution_runner
         self._problem = problem
+        self._options['Back'] = self._stop
         self._options['Submit solution'] = self._submit_solution        
         self._options['Rerun last solution file'] = self._submit_last_solution_file
-        self._options['See test case'] = self._see_test_case
-        self._options['Back'] = self._stop
+        self._options['See test case'] = self._see_test_case        
 
         self._last_solution_file = ''
 

@@ -12,13 +12,13 @@ class MainMenu(CliMenu):
         
         self._problem_selection_menu = ProblemSelectionMenu(problem_source)
 
-        self._options['Solve problems'] = self._open_problem_selection_menu            
         self._options['Quit'] = self._stop
+        self._options['Solve problems'] = self._open_problem_selection_menu                    
 
     def _open_problem_selection_menu(self):
         os.system('cls')
         self._problem_selection_menu.main_loop()
-        
+
         os.system('cls')
         self._print_menu()
 

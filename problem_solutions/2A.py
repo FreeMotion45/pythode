@@ -8,9 +8,8 @@ for _ in range(t):
 
     arr = sorted([r,d,y])
     ans = arr[0]
-    for i in range(1, g):
-        if i % 2 == 1:
-            ans += arr[-1]
-        else:
-            ans += arr[1]
+    if (g - 1) % 2 == 0:
+        ans += (arr[-1] + arr[1]) * (g - 1) // 2
+    else:
+        ans += arr[-1] + (arr[-1] + arr[1]) * (g - 2) // 2
     print(ans)
