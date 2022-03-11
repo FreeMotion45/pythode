@@ -1,0 +1,39 @@
+Gabi wants to buy some cool items from the grocery shop.
+Lucky for Gabi, he received tickets that let him choose any item from the grocery store.
+Gabi can exchange each ticket for exactly 1 item, without paying any money.
+
+Given an array of the amount of times each item exists and the grocery store and its price,
+Gabi wants to know the maximal amount of money he can save.
+
+Inputs
+======
+The first line contains two numbers N, T (1 <= N, T <= 10^5),
+N - denoting how many types of groceries there are, T - the amount of tickets Gabi has.
+In each subsequent N lines there are two numbers A, C (1 <= A, C <= 10^5).
+A - the amount of times the item exists, C - the cost of a single item.
+
+Output
+======
+Output a single number denoting the maximum amount of money Gabi can save.
+
+Example 1
+=========
+5 3
+1 5
+1 7
+10 1
+2 8
+1 6
+
+Answer = 8 * 2 + 7 = 23
+Gabi will buy the two items whose cost is 8, and one item whose cost is 7.
+
+Example 2
+=========
+3 4
+1 10
+1 20
+1 30
+
+Answer = 10 + 20 + 30 = 60
+Gabi has more tickets that available items, so he will buy every single item at the store.

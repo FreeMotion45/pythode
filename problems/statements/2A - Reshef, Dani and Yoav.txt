@@ -1,0 +1,52 @@
+Reshef, Dani and Yoav secretly have a *Hentai loving club* club.
+The three boys ALWAYS like to stack body pillows.
+They like them so much that each club member volunteers
+to bring up to *P(per club member)* random body pillows every day.
+However, to keep up the excitement, every day only *1* club member
+is permitted to bring his body pillows to their meeting.
+
+In addition, the three boys get tired of seeing the same body pillows each day,
+so they thought of way to do it:
+Every day, a different club member must bring his body pillows to the meeting.
+There is one single constraint, each club member must bring
+his body pillows *AT LEAST* once.
+
+Calculate the maximum amount of body pillows the *Hentai loving club* club
+can see under the given constraints.
+
+Input
+=====
+The first line denotes the amount of test cases (1 <= t <= 10 ^ 5).
+Each of the test cases contain 1 line with 4 numbers:
+r, d, y, g (1 <= r, d, y, g <= 10 ^ 6) - the amount of body pillows
+that Reshef, Dani and Yoav may bring every day. g - the amount of days
+the club will be meeting.
+
+Output
+======
+For each test case, output 1 number: the maximum amount of body pillows they
+can see under the given constraints. Print -1 if this is impossible.
+
+Example
+=======
+3
+3 2 1 3
+4 6 5 2
+20 10 15 5
+
+Answer
+======
+6
+-1
+80
+
+Explanation
+===========
+A possible solution for the first test case is that Reshef, Dani and Yoav
+bring their body pillows in that order. 1 + 2 + 3 = 6
+
+In the second test case there are not enough days for each of the club member
+to bring in their body pillows.
+
+In the last test case, they will bring their body pillows in this order:
+Reshef -> Yoav -> Dani -> Yoav -> Reshef.
