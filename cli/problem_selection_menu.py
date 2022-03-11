@@ -3,6 +3,7 @@ from cli.cli_menu import CliMenu
 from cli.specific_problem_menu import SpecificProblemMenu
 from execution.external_code_runner import ExternalCodeRunner
 from execution.user_solution_runner import UserSolutionRunner
+from problem import Problem
 from problem_source.problem_source import ProblemSource
 
 
@@ -16,14 +17,19 @@ class ProblemSelectionMenu(CliMenu):
         self._problem_source = problem_source
         self._problem_list = problem_source.get_problem_list()    
 
+        self._options['Back'] = self._stop
         for problem in self._problem_list:
             self._options[problem.id] = self._select_problem
-
-        self._options['Back'] = self._stop  
+        
         self._current_problem_id = ''
 
     def _get_option(self, choice: str):
-        self._current_problem_id = choice
+        if choice.isnumeric():
+            choice = int(choice) - 2  # - 2 because 1 is reserved for back and also 1 indexed.
+            chosen_problem: Problem = self._problem_list[choice]
+            choice = chosen_problem.id
+            
+        self._current_problem_id = choice        
         return super()._get_option(choice)
 
     def _select_problem(self):
@@ -40,6 +46,6 @@ class ProblemSelectionMenu(CliMenu):
     def _print_menu(self):
         print('Select a problem to solve (1A, 4B...)')
         for i, problem in enumerate(self._problem_list):
-            print(f'{i + 1}. {problem.name}')
+            print(f'{i + 2}. {problem.name}')
         print()
-        print('Type `Back` to go back.')
+        print('Type `1` or `Back` to go back.')

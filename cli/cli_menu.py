@@ -11,6 +11,8 @@ class CliMenu(ABC):
         self._options: Mapping[str, Callable] = dict()
 
     def main_loop(self):
+        self._running = True
+        
         self._print_menu()
         while self._running:
             choice = self._get_input()
