@@ -10,4 +10,4 @@ ans = 0
 for a, c in arr:
     ans += min(a, t) * c
     t -= min(a, t)
-print()
+print(ans)

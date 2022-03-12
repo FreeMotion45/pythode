@@ -21,7 +21,12 @@ class UserSolutionRunner:
                 yield TestCaseResultType.TimeLimitExceeded, f'Time limit exceeded for test case #: {test_case_number}'
 
             solution_lines = solution_output.strip().splitlines()
-            correct_lines = correct_output.strip().splitlines()            
+            correct_lines = correct_output.strip().splitlines() 
+
+            if len(correct_lines) < len(solution_lines):
+                yield TestCaseResultType.IncorrectResult, f'Solution didn\'t solve all test cases'           
+            elif len(correct_lines) > len(solution_lines):
+                yield TestCaseResultType.IncorrectResult, f'Solution solved more test cases than provided'
 
             for correct_line, solution_line in zip(correct_lines, solution_lines):
                 if correct_line.strip() != solution_line.strip():
