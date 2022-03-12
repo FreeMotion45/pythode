@@ -9,6 +9,10 @@ OUTPUTS_DIR = 'outputs'
 STATEMENTS_DIR = 'statements'
 
 
+def _iterdir_sorted(dir: Path):
+        return sorted(list(dir.iterdir()), key=lambda f: int(f.name.split('.')[0]))
+
+
 class FileSystemDataSource(ProblemSource):
     def __init__(self, problems_root_dir: Path) -> None:
         super().__init__()
@@ -51,7 +55,7 @@ class FileSystemDataSource(ProblemSource):
         if not problem_inputs_dir.is_dir():
             raise InvalidFileException(message=f'{problem_identifier} is missing an inputs directory!')
 
-        for inputs_path in problem_inputs_dir.iterdir():
+        for inputs_path in _iterdir_sorted(problem_inputs_dir):
             yield inputs_path.read_text()
 
     def get_problem_outputs(self, problem_identifier: str) -> Iterable[str]:
@@ -59,5 +63,5 @@ class FileSystemDataSource(ProblemSource):
         if not problem_outputs_dir.is_dir():
             raise InvalidFileException(message=f'{problem_identifier} is missing an outputs directory!')
 
-        for outputs_path in problem_outputs_dir.iterdir():
+        for outputs_path in _iterdir_sorted(problem_outputs_dir):
             yield outputs_path.read_text()
