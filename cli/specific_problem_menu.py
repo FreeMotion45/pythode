@@ -65,7 +65,6 @@ class SpecificProblemMenu(CliMenu):
         if all_cases_passed:
             print('Congrats! You have successfully solved the question, well done! 😎')
 
-
     def _print_menu(self):
         os.system('cls')
         print(self._problem.statement)

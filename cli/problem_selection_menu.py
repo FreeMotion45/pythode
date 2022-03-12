@@ -45,6 +45,7 @@ class ProblemSelectionMenu(CliMenu):
 
     def _print_menu(self):
         print('Select a problem to solve (1A, 4B...)')
+        print('1. Back')
         for i, problem in enumerate(self._problem_list):
             print(f'{i + 2}. {problem.name}')
         print()
