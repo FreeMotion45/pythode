@@ -1,0 +1,47 @@
+Dani has rejected humanity, and wants to return to WIDE.
+Since he only recently thought of it he has  WIDEness score of 0.
+To get himself back to WIDE he needs to pass a series of bridges and roads.
+A block of bridge is denoted by a `0` and a block of road is denoted by `1`.
+Bridges, unlike roads, tend to wiggle whenever someone is passing over them.
+Because of that, Dani can't get any WIDE score when he is on them.
+Roads however, have a good foundation, so when Dani passes them he can safely
+gain WIDE score.
+
+However, Dani has anxiety.
+Due to this, he can start gaining WIDE score after feeling safe.
+Dani doesn't feel safe, until he has walked the same amount of blocks,
+as the length of the last bridge passed.
+
+To motivate Dani, help him by calculating his WIDEness score when he reaches the end
+of his journey.
+
+Input
+=====
+The first line contains a single number t (1 <= t <= 10 ^ 4), denoting the number of test cases.
+Each test case contains a single number b (1 <= b <= 10 ^ 4), denting the number of blocks in his journey,
+then *b* characters follow. Where bridge blocks are denoted by `0`, and road blocks by `1`.
+
+Output
+======
+For each test case output a single number denoting Dani`s WIDEness score at the end of his journey.
+
+Example
+=======
+2
+14
+11011000111011
+17
+00001110001100111
+
+Explanation
+===========
+In the first test case, Dani walks on the road gaining *2* WIDE score.
+He then walks on a bridge for 1 block. He returns to the road, and walks another block.
+Since Dani walked on a bridge for 1 block, he needs to pass the same amount of blocks on a road,
+so he doesn't receive any WIDE score for the first block after the bridge, but does receive one
+for the next block (Dani won't feel anxious, as he walked the same amount of blocks on a road,
+as the last bridge he passed).
+Following the same logic, the final answer will be: 4
+
+In the second test case, Dani will only gain WIDEness score on the last block of the road,
+earning him a whopping amount of *1* WIDEness score.
