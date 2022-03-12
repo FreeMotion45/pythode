@@ -18,6 +18,13 @@ class SpecificProblemMenu(CliMenu):
 
         self._last_solution_file = ''
 
+    def _set_last_solution_file(self, solution_file: str):
+        self._last_solution_file = solution_file
+        while self._last_solution_file[0] in ['"', '\'']:
+            self._last_solution_file = self._last_solution_file[1:]
+        while self._last_solution_file[-1] in ['"', '\'']:
+            self._last_solution_file = self._last_solution_file[:-1]
+
     def _see_test_case(self):
         print('WARNING:')
         print('Seeing the test cases is bad practice. However, here in Pythode we still allow it.')
@@ -37,17 +44,16 @@ class SpecificProblemMenu(CliMenu):
 
     def _submit_solution(self):
         solution_file = input('Solution file: ')
-        self._last_solution_file = solution_file
+        self._set_last_solution_file(solution_file)
         print('Running solution...')
-        solution_results = self._solution_runner.run_solution(self._problem, Path(solution_file))
-        self._print_results(solution_results)
+        self._submit_last_solution_file()        
 
     def _print_results(self, solution_results: Iterable[Tuple[TestCaseResultType, str]]):
         all_cases_passed = True        
         counter = 0
         for test_case_result_type, msg in solution_results:
             counter += 1
-            print(f'Test case #: {counter}: ...', end='')
+            print(f'Test case #: {counter}: ... ', end='')
             if test_case_result_type == TestCaseResultType.CorrectResult:
                 print('✅')
             else:
